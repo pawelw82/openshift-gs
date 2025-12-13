@@ -44,7 +44,7 @@ public class FruitApi {
     @ResponseBody
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Fruit get(@PathVariable("id") Integer id) {
-        verifyFruitExists(id);
+        verifyFruitExists2(id);
 
         return repository.findById(id).orElse(null);
     }
@@ -53,7 +53,7 @@ public class FruitApi {
     @ResponseStatus(HttpStatus.OK)
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Fruit put(@PathVariable("id") Integer id, @RequestBody(required = false) Fruit fruit) {
-        verifyFruitExists(id);
+        verifyFruitExists2(id);
         verifyCorrectPayload(fruit);
 
         fruit.setId(id);
@@ -63,12 +63,12 @@ public class FruitApi {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Integer id) {
-        verifyFruitExists(id);
+        verifyFruitExists2(id);
 
         repository.deleteById(id);
     }
 
-    private void verifyFruitExists(Integer id) {
+    private void verifyFruitExists2(Integer id) {
         if (!repository.existsById(id)) {
             throw new RuntimeException(String.format("Fruit with id=%d was not found", id));
         }
