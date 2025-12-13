@@ -37,7 +37,7 @@ public class FruitApi {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Fruit post(@RequestBody(required = false) Fruit fruit) {
         verifyCorrectPayload(fruit);
-
+/**/
         return repository.save(fruit);
     }
 
